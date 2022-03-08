@@ -1,5 +1,5 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
-export const receiveQuestions = (questions) => ({ type: RECEIVE_QUESTIONS, questions })
+export const ADD_QUESTION = 'ADD_QUESTION'
 
-export const ADD_QUESTIONS = 'ADD_QUESTIONS'
-export const addQuestions = (questions) => ({ type: ADD_QUESTIONS, questions })
+export const receiveQuestions = (questions) => ({ type: RECEIVE_QUESTIONS, questions })
+export const addQuestion = (question) => ({ type: ADD_QUESTION, question })

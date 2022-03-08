@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { handleAddQuestion } from '../actions/shared'
 
 const NewQuestion = (props) => {
-  const emptyOptions = { optionOneText: '', optionTwoText: '', author: '' }
-  const [question, setQuestion] = useState(emptyOptions)
+  const [question, setQuestion] = useState({ optionOneText: '', optionTwoText: '', author: '' })
   const handleClick = () => {
-    console.log(question)
+    props.dispatch(handleAddQuestion(question))
   }
   return (
-    <Card className="new=question" style={{ width: 600, margin: '20px auto' }}>
+    <Card className="new-question" style={{ width: 600, margin: '20px auto' }}>
       <Card.Header>
         <Card.Title>
           <h2>Create New Question</h2>

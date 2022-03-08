@@ -7,7 +7,9 @@ const Login = (props) => {
   const [inputValue, setInputValue] = useState('')
 
   const handleClick = (event) => {
-    props.dispatch(setAuthedUser(inputValue.value))
+    event.preventDefault()
+    const id = inputValue.value.split(" ").join("").toLowerCase()
+    props.dispatch(setAuthedUser(id))
     inputValue.value = ''
   }
 

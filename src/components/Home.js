@@ -22,11 +22,10 @@ const Home = (props) => {
   )
 }
 
-const mapStateToProps = ({ users, questions, authedUser }) => {
+const mapStateToProps = ({ users, questions }) => {
   return {
     users,
     questions,
-    authedUser,
   }
 }
 
