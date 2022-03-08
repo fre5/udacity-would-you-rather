@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component }  from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import { Routes, Route } from 'react-router-dom'
@@ -12,8 +12,9 @@ import NewQuestion from './NewQuestion'
 import Home from './Home'
 import LeaderBoard from './LeaderBoard'
 
-class App extends React.Component {
-  componentDidMount() {
+class App extends Component {
+
+  componentDidMount = () => {
     const { dispatch } = this.props
     dispatch(handleInitialData())
   }
@@ -25,14 +26,21 @@ class App extends React.Component {
         <Routes>
           <Route path='login' element={<Login />} />
           <Route path='/' element={<Home />} />
+          
           <Route path='results' element={<Results />} />
           <Route path='new' element={<NewQuestion />} />
           <Route path='leaderboard' element={<LeaderBoard />} />
-          <Route path='poll' element={<Poll />} />
+          <Route path='poll' element={<Poll />} /> 
         </Routes>
       </div>   
     )
   }
 }
 
-export default connect()(App);
+const mapStateToProps = (authedUser) => {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(App);

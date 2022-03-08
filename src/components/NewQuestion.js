@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/shared'
+import { useNavigate } from 'react-router-dom'
 
 const NewQuestion = (props) => {
   const [question, setQuestion] = useState({ optionOneText: '', optionTwoText: '', author: '' })
+  const navigate = useNavigate()
   const handleClick = () => {
     props.dispatch(handleAddQuestion(question))
+    navigate("/")
   }
   return (
     <Card className="new-question" style={{ width: 600, margin: '20px auto' }}>

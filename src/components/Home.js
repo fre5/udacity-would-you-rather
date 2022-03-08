@@ -12,7 +12,7 @@ const Home = (props) => {
         <div className={ question === "answered" ? "tab selected" : "tab" } onClick={() => setQuestion('answered')}><strong>Answered Questions</strong></div>
       </div>
       <div className="home-container">
-        {questionIds.map(id => {
+        {questionIds.sort((a, b) => props.questions[b].timestamp - props.questions[a].timestamp).map(id => {
           const question = props.questions[id].optionOne.text
           const author = props.questions[id].author
           return <HomeCard key={id} question={question} name={props.users[author].name} />

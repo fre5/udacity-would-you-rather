@@ -1,10 +1,15 @@
+import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 
-export default function Poll() {
+export default function Poll(props) {
+  const [selectedQuestion, setSelectedQuestion] = useState('')
+  const handleSubmit = (event) => {
+    console.log('test')
+  }
   return (
     <Card style={{ width: 600, margin: '20px auto' }}>
       <Card.Header>
-        <Card.Title>Kanye West asks:</Card.Title>
+        <Card.Title>{props.author} asks:</Card.Title>
       </Card.Header>
       <Card.Body>
         <img src="avatar-placeholder.jpeg" className="avatar" alt="avatar"/>
@@ -12,13 +17,13 @@ export default function Poll() {
           <h4>Would You Rather ...</h4>
           <div>
             <input type="radio" id="first" style={{ margin: '10px 10px 10px 0px' }}/>
-            <label htmlFor="first">Would you rather find $50 yourself?</label>
+            <label htmlFor="first">{ props.optionOneText }</label>
           </div>
           <div>
             <input type="radio" id="second" style={{ margin: '10px 10px 10px 0px' }}/>
-            <label htmlFor="second">Would you rather have your best friend find $500</label>
+            <label htmlFor="second">{ props.optionTwoText }</label>
           </div>
-          <Button variant="primary" style={{ marginTop: 10, width: '100%' }}>Submit</Button>
+          <Button variant="primary" style={{ marginTop: 10, width: '100%' }} onClick={handleSubmit}>Submit</Button>
         </div>
       </Card.Body>
     </Card>
