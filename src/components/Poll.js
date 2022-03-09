@@ -1,14 +1,12 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Card, Button } from 'react-bootstrap'
-import Login from './Login'
+import { useNavigate } from 'react-router-dom'
 
 const Poll = (props) => {
+  const navigate = useNavigate()
   const handleSubmit = (event) => {
-    console.log('test')
+    navigate('/results')
   }
-
-  if (!props.authedUser) return <Login />
 
   return (
     <Card style={{ width: 600, margin: '20px auto' }}>
@@ -34,10 +32,4 @@ const Poll = (props) => {
   )
 }
 
-const mapStateToProps = ({ authedUser }) => {
-  return {
-    authedUser
-  }
-}
-
-export default connect (mapStateToProps)(Poll)
+export default Poll

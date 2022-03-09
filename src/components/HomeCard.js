@@ -5,7 +5,7 @@ const HomeCard = (props) => {
   const navigate = useNavigate()
 
   const handleClick = (event) => {
-    navigate("/poll")
+    navigate("/add")
   }
   return (
     <>
@@ -16,7 +16,7 @@ const HomeCard = (props) => {
         </Card.Title>
       </Card.Header>
       <Card.Body>
-        <img src="avatar-placeholder.jpeg" className="avatar" alt="avatar" />
+        <img src={props.avatar} className="avatar" alt="avatar" />
         <div className="home-poll-question">
           <h6>Would you rather</h6>
           <div style={{ height: 20 }} />

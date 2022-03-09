@@ -25,7 +25,7 @@ const questions = (questions, props) => {
       {questions.sort((a, b) => props.questions[b].timestamp - props.questions[a].timestamp).map(id => {
         const question = props.questions[id].optionOne.text
         const author = props.questions[id].author
-        return <HomeCard key={id} question={question} name={props.users[author].name} />
+        return <HomeCard key={id} question={question} name={props.users[author].name} avatar={props.users[author].avatarURL}  />
       })}
     </div>
   )
