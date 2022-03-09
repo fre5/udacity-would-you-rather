@@ -3,9 +3,8 @@ import { useNavigate } from 'react-router-dom'
 
 const HomeCard = (props) => {
   const navigate = useNavigate()
-
   const handleClick = (event) => {
-    navigate("/add")
+    navigate(`/answer/${props.index}`)
   }
   return (
     <>

@@ -12,10 +12,12 @@ const Login = (props) => {
     const id = inputValue.value.split(" ").join("").toLowerCase()
     props.dispatch(setAuthedUser(id))
     inputValue.value = ''
-    navigate("/")
+    navigate('/')
   }
 
-  if (props.authedUser) return <></>
+  if (props.authedUser) {
+    navigate('/')  
+  }
 
   return (
     <Card className="login-card">

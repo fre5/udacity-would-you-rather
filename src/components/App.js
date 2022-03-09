@@ -24,12 +24,12 @@ class App extends Component {
       <div className="app">
         <Header />
         <Routes>
-          <Route path='login' element={<Login />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/' element={<Home />} />
-          <Route path='results' element={ <Results /> }  />
-          <Route path='new' element={ <NewQuestion /> }  />
-          <Route path='leaderboard' element={ <LeaderBoard /> }  />
-          <Route path='add' element={ <Poll /> }  />
+          <Route path='/results/:id' element={ <Results /> }  />
+          <Route path='/new' element={ <NewQuestion /> }  />
+          <Route path='/leaderboard' element={ <LeaderBoard /> }  />
+          <Route path='/answer/:id' element={ <Poll /> }  />
         </Routes>
       </div>   
     )

@@ -1,29 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const Poll = (props) => {
+  const [selection, setSelection] = useState('')
+  const { id } = useParams()
   const navigate = useNavigate()
   const handleSubmit = (event) => {
-    navigate('/results')
+    event.preventDefault()
+    console.log(selection)
+    navigate(`/results/${id}`)
   }
-
+  const question = props.questions[id]
+  const user = props.users[question.author].name
+  const avatar = props.users[question.author].avatarURL
+  const optionOneText = question.optionOne.text
+  const optionTwoText = question.optionTwo.text
   return (
     <Card style={{ width: 600, margin: '20px auto' }}>
       <Card.Header>
-        <Card.Title>{props.author} asks:</Card.Title>
+        <Card.Title>{user} asks:</Card.Title>
       </Card.Header>
       <Card.Body>
-        <img src="avatar-placeholder.jpeg" className="avatar" alt="avatar"/>
+        <img src={avatar} className="avatar" alt="avatar"/>
         <div className="poll-question">
           <h4>Would You Rather ...</h4>
           <div>
-            <input type="radio" id="first" style={{ margin: '10px 10px 10px 0px' }}/>
-            <label htmlFor="first">{ props.optionOneText }</label>
+            <input type="radio" id="first" name="question" style={{ margin: '10px 10px 10px 0px' }} onChange={(event) => setSelection(optionOneText) }/>
+            <label htmlFor="first" >{ optionOneText }</label>
           </div>
           <div>
-            <input type="radio" id="second" style={{ margin: '10px 10px 10px 0px' }}/>
-            <label htmlFor="second">{ props.optionTwoText }</label>
+            <input type="radio" id="second" name="question" style={{ margin: '10px 10px 10px 0px' }} onChange={(event) => setSelection(optionTwoText) }/>
+            <label htmlFor="second">{ optionTwoText }</label>
           </div>
           <Button variant="primary" style={{ marginTop: 10, width: '100%' }} onClick={handleSubmit}>Submit</Button>
         </div>
@@ -32,4 +41,11 @@ const Poll = (props) => {
   )
 }
 
-export default Poll
+const mapStateToProps = ({ users, questions }) => {
+  return {
+    users,
+    questions,
+  }
+}
+
+export default connect (mapStateToProps)(Poll)
