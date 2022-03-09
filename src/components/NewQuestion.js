@@ -8,7 +8,8 @@ import Login from './Login'
 const NewQuestion = (props) => {
   const [question, setQuestion] = useState({ optionOneText: '', optionTwoText: '', author: '' })
   const navigate = useNavigate()
-  const handleClick = () => {
+  const handleClick = (event) => {
+    event.preventDefault()
     props.dispatch(handleAddQuestion(question))
     navigate("/")
   }

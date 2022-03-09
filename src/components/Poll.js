@@ -2,14 +2,21 @@ import React, { useState } from 'react'
 import { Card, Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { handleSaveQuestionAnswer } from '../actions/shared'
 
 const Poll = (props) => {
   const [selection, setSelection] = useState('')
   const { id } = useParams()
   const navigate = useNavigate()
+  
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log(selection)
+    const questionAnswer = {
+      authedUser: props.authedUser,
+      qid: id,
+      answer: selection
+    }
+    props.dispatch(handleSaveQuestionAnswer(questionAnswer))
     navigate(`/results/${id}`)
   }
   const question = props.questions[id]
@@ -41,10 +48,11 @@ const Poll = (props) => {
   )
 }
 
-const mapStateToProps = ({ users, questions }) => {
+const mapStateToProps = ({ users, questions, authedUser }) => {
   return {
     users,
     questions,
+    authedUser,
   }
 }
 

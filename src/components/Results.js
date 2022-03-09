@@ -1,12 +1,15 @@
 import { Card, ProgressBar } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import Login from './Login'
+import { useParams, useNavigate } from 'react-router-dom'
 
 const Results = (props) => {
+  const navigate = useNavigate()
   const { id } = useParams()
 
-  if (!props.authedUser) return <Login />
+  if (!props.authedUser) { 
+    navigate('/login') 
+    return <></>
+  }
 
   const question = props.questions[id]
   const user = props.users[question.author].name

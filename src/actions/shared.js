@@ -1,6 +1,6 @@
-import { getInitialData, saveQuestion } from '../utils/api'
+import { getInitialData, saveQuestion, saveQuestionAnswer } from '../utils/api'
 import { receiveUsers } from '../actions/users'
-import { receiveQuestions, addQuestion } from '../actions/questions'
+import { receiveQuestions, addQuestion, addAnswer } from '../actions/questions'
 
 export const handleInitialData = 
   () => (dispatch) => getInitialData()
@@ -17,4 +17,14 @@ export const handleAddQuestion =
       optionTwoText: question.optionTwoText,
       author: authedUser,
     }).then(( question ) => (dispatch(addQuestion(question))) )
+  }
+
+export const handleSaveQuestionAnswer = 
+  (questionAnswer) => (dispatch, getState) => {
+    const { authedUser } = getState()
+    return saveQuestionAnswer({
+      authedUser: authedUser,
+      qid: questionAnswer.qid,
+      answer: questionAnswer.answer,
+    }).then(( questionAnswer ) => dispatch(addAnswer(questionAnswer)))
   }
