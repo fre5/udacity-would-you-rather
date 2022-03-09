@@ -20,6 +20,7 @@ class Header extends Component {
   }
 
   render() {
+    const formatName = this.props.authedUser ? this.props.users[this.props.authedUser].name : ''
     return (
       <header className="header">
         <div className="app-name">
@@ -37,7 +38,7 @@ class Header extends Component {
           </Nav.Item>
           <Nav className="login-nav">
             <Nav.Item>
-              <Nav.Link disabled style={{ opacity: this.props.authedUser ? 1 : 0 }}>Hello, { this.props.authedUser }</Nav.Link>
+              <Nav.Link disabled style={{ opacity: this.props.authedUser ? 1 : 0 }}>Hello, { formatName }</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link style={{ display: this.props.authedUser ? 'inline-block' : 'none' }} onClick={this.logout}>Logout</Nav.Link>
@@ -50,8 +51,9 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({ authedUser }) => {
+const mapStateToProps = ({ users, authedUser }) => {
   return {
+    users,
     authedUser,
   }
 }

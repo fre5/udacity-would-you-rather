@@ -1,6 +1,11 @@
 import LeaderBoardCard from './LeaderBoardCard'
+import { connect } from 'react-redux'
+import Login from './Login'
 
-export default function LeaderBoard() {
+const LeaderBoard = (props) => {
+
+  if (!props.authedUser) return <Login />
+
   return (
     <div style={{ width: 600, margin: '20px auto' }}>
       <LeaderBoardCard />
@@ -8,3 +13,11 @@ export default function LeaderBoard() {
     </div>
   )
 }
+
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    authedUser
+  }
+}
+
+export default connect (mapStateToProps)(LeaderBoard)

@@ -3,6 +3,7 @@ import { Card, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/shared'
 import { useNavigate } from 'react-router-dom'
+import Login from './Login'
 
 const NewQuestion = (props) => {
   const [question, setQuestion] = useState({ optionOneText: '', optionTwoText: '', author: '' })
@@ -11,6 +12,9 @@ const NewQuestion = (props) => {
     props.dispatch(handleAddQuestion(question))
     navigate("/")
   }
+
+  if (!props.authedUser) return <Login />
+
   return (
     <Card className="new-question" style={{ width: 600, margin: '20px auto' }}>
       <Card.Header>

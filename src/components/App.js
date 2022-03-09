@@ -26,11 +26,10 @@ class App extends Component {
         <Routes>
           <Route path='login' element={<Login />} />
           <Route path='/' element={<Home />} />
-          
-          <Route path='results' element={<Results />} />
-          <Route path='new' element={<NewQuestion />} />
-          <Route path='leaderboard' element={<LeaderBoard />} />
-          <Route path='poll' element={<Poll />} /> 
+          <Route path='results' element={ <Results /> }  />
+          <Route path='new' element={ <NewQuestion /> }  />
+          <Route path='leaderboard' element={ <LeaderBoard /> }  />
+          <Route path='add' element={ <Poll /> }  />
         </Routes>
       </div>   
     )

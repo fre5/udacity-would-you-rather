@@ -1,6 +1,11 @@
 import { Card, ProgressBar } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import Login from './Login'
 
-export default function Results() {
+const Results = (props) => {
+
+  if (!props.authedUser) return <Login />
+
   return (
     <Card style={{ width: 600, margin: '20px auto' }}>
       <Card.Header>
@@ -27,3 +32,11 @@ export default function Results() {
     </Card>
   )
 }
+
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    authedUser
+  }
+}
+
+export default connect (mapStateToProps)(Results)

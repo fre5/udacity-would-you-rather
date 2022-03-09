@@ -1,11 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 import { Card, Button } from 'react-bootstrap'
+import Login from './Login'
 
-export default function Poll(props) {
-  const [selectedQuestion, setSelectedQuestion] = useState('')
+const Poll = (props) => {
   const handleSubmit = (event) => {
     console.log('test')
   }
+
+  if (!props.authedUser) return <Login />
+
   return (
     <Card style={{ width: 600, margin: '20px auto' }}>
       <Card.Header>
@@ -29,3 +33,11 @@ export default function Poll(props) {
     </Card>
   )
 }
+
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    authedUser
+  }
+}
+
+export default connect (mapStateToProps)(Poll)
