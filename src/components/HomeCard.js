@@ -1,10 +1,16 @@
 import { Button, Card } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const HomeCard = (props) => {
   const navigate = useNavigate()
+
   const handleClick = (event) => {
-    navigate(`/answer/${props.index}`)
+    if (props.authedUser) {
+      navigate(`/answer/${props.index}`)
+    } else {
+      navigate('/login')
+    }
   }
   return (
     <>
@@ -29,4 +35,10 @@ const HomeCard = (props) => {
   )
 }
 
-export default HomeCard 
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    authedUser
+  }
+}
+
+export default connect (mapStateToProps)(HomeCard)

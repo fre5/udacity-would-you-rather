@@ -11,19 +11,16 @@ const Poll = (props) => {
   
   const handleSubmit = (event) => {
     event.preventDefault()
-    const questionAnswer = {
-      authedUser: props.authedUser,
-      qid: id,
-      answer: selection
-    }
-    props.dispatch(handleSaveQuestionAnswer(questionAnswer))
+    props.dispatch(handleSaveQuestionAnswer(props.authedUser, id, selection))
     navigate(`/results/${id}`)
   }
+  
   const question = props.questions[id]
   const user = props.users[question.author].name
   const avatar = props.users[question.author].avatarURL
   const optionOneText = question.optionOne.text
   const optionTwoText = question.optionTwo.text
+
   return (
     <Card style={{ width: 600, margin: '20px auto' }}>
       <Card.Header>
@@ -34,11 +31,11 @@ const Poll = (props) => {
         <div className="poll-question">
           <h4>Would You Rather ...</h4>
           <div>
-            <input type="radio" id="first" name="question" style={{ margin: '10px 10px 10px 0px' }} onChange={(event) => setSelection(optionOneText) }/>
+            <input type="radio" id="first" name="question" style={{ margin: '10px 10px 10px 0px' }} onChange={(event) => setSelection('optionOne') }/>
             <label htmlFor="first" >{ optionOneText }</label>
           </div>
           <div>
-            <input type="radio" id="second" name="question" style={{ margin: '10px 10px 10px 0px' }} onChange={(event) => setSelection(optionTwoText) }/>
+            <input type="radio" id="second" name="question" style={{ margin: '10px 10px 10px 0px' }} onChange={(event) => setSelection('optionTwo') }/>
             <label htmlFor="second">{ optionTwoText }</label>
           </div>
           <Button variant="primary" style={{ marginTop: 10, width: '100%' }} onClick={handleSubmit}>Submit</Button>
