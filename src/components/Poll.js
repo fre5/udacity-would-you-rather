@@ -6,16 +6,16 @@ import { handleSaveQuestionAnswer } from '../actions/shared'
 
 const Poll = (props) => {
   const [selection, setSelection] = useState('')
-  const { id } = useParams()
+  const { question_id } = useParams()
   const navigate = useNavigate()
   
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.dispatch(handleSaveQuestionAnswer(props.authedUser, id, selection))
-    navigate(`/results/${id}`)
+    props.dispatch(handleSaveQuestionAnswer(props.authedUser, question_id, selection))
+    navigate(`/results/${question_id}`)
   }
   
-  const question = props.questions[id]
+  const question = props.questions[question_id]
   const user = props.users[question.author].name
   const avatar = props.users[question.author].avatarURL
   const optionOneText = question.optionOne.text

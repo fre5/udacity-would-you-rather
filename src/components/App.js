@@ -1,4 +1,4 @@
-import React, { Component }  from 'react'
+import React, { useEffect }  from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import { Routes, Route } from 'react-router-dom'
@@ -12,28 +12,26 @@ import NewQuestion from './NewQuestion'
 import Home from './Home'
 import LeaderBoard from './LeaderBoard'
 
-class App extends Component {
+const App = (props) => {
 
-  componentDidMount = () => {
-    const { dispatch } = this.props
+  useEffect(() => {
+    const { dispatch } = props 
     dispatch(handleInitialData())
-  }
-
-  render() {
-    return (
-      <div className="app">
-        <Header />
-        <Routes>
-          <Route path='/login' element={<Login />} />
-          <Route path='/' element={<Home />} />
-          <Route path='/results/:id' element={ <Results /> }  />
-          <Route path='/new' element={ <NewQuestion /> }  />
-          <Route path='/leaderboard' element={ <LeaderBoard /> }  />
-          <Route path='/answer/:id' element={ <Poll /> }  />
-        </Routes>
-      </div>   
-    )
-  }
+  }, [])
+  
+  return (
+    <div className="app">
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={ <Login />} />
+        <Route path='/results/:id' element={ <Results /> }  />
+        <Route path='/add' element={ props.authedUser ? <NewQuestion /> : <Login />}  />
+        <Route path='/leaderboard' element={ props.authedUser ? <LeaderBoard /> : <Login />}  />
+        <Route path='/questions/:question_id' element={ <Poll /> }  />
+      </Routes>
+    </div>   
+  )
 }
 
 const mapStateToProps = (authedUser) => {

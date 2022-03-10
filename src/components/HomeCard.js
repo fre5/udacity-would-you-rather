@@ -7,7 +7,7 @@ const HomeCard = (props) => {
 
   const handleClick = (event) => {
     if (props.authedUser) {
-      navigate(`/answer/${props.index}`)
+      navigate(`/questions/${props.index}`)
     } else {
       navigate('/login')
     }

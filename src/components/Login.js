@@ -2,21 +2,21 @@ import { Form, Card, Button } from 'react-bootstrap'
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Login = (props) => {
   const [inputValue, setInputValue] = useState('')
   const navigate = useNavigate()
+  const location = useLocation()
   const handleClick = (event) => {
     event.preventDefault()
     const id = inputValue.value.split(" ").join("").toLowerCase()
     props.dispatch(setAuthedUser(id))
     inputValue.value = ''
-    navigate('/')
-  }
-
-  if (props.authedUser) {
-    navigate('/')  
+    if (location.pathname === '/login') {
+      navigate('/')
+    }
+    navigate(1)
   }
 
   return (

@@ -22,27 +22,27 @@ class Header extends Component {
   render() {
     const formatName = this.props.authedUser ? this.props.users[this.props.authedUser].name : ''
     return (
-      <header className="header">
-        <div className="app-name">
+      <header className='header'>
+        <div className='app-name'>
           <h4>Would You Rather App</h4> 
         </div>
-        <Nav className="navigation justify-content-center" activeKey="/">
+        <Nav className='navigation justify-content-center' activeKey='/'>
           <Nav.Item>
-            <NavLink to="/" className="nav-link">Home</NavLink>
+            <NavLink to='/' className='nav-link'>Home</NavLink>
           </Nav.Item>
           <Nav.Item>
-            <NavLink to="/new" className="nav-link">New Question</NavLink>
+            <NavLink to='/add' className='nav-link'>New Question</NavLink>
           </Nav.Item>
           <Nav.Item>
-            <NavLink to="/leaderboard" className="nav-link">Leader Board</NavLink>
+            <NavLink to='/leaderboard' className='nav-link'>Leader Board</NavLink>
           </Nav.Item>
-          <Nav className="login-nav">
+          <Nav className='login-nav'>
             <Nav.Item>
               <Nav.Link disabled style={{ opacity: this.props.authedUser ? 1 : 0 }}>Hello, { formatName }</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link style={{ display: this.props.authedUser ? 'inline-block' : 'none' }} onClick={this.logout}>Logout</Nav.Link>
-              <NavLink style={{ display: this.props.authedUser ? 'none' : 'inline-block' }} to="/login" className="nav-link">Login</NavLink>
+              <NavLink style={{ display: this.props.authedUser ? 'none' : 'inline-block' }} to='/login' className='nav-link'>Login</NavLink>
             </Nav.Item>
           </Nav>
         </Nav>
