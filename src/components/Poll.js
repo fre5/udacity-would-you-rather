@@ -8,13 +8,13 @@ const Poll = (props) => {
   const [selection, setSelection] = useState('')
   const { question_id } = useParams()
   const navigate = useNavigate()
-  
+
   const handleSubmit = (event) => {
     event.preventDefault()
     props.dispatch(handleSaveQuestionAnswer(props.authedUser, question_id, selection))
     navigate(`/results/${question_id}`)
   }
-  
+
   const question = props.questions[question_id]
   const user = props.users[question.author].name
   const avatar = props.users[question.author].avatarURL

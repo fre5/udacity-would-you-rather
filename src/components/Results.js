@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 const Results = (props) => {
-  const { id } = useParams()
+  const { question_id } = useParams()
 
-  const question = props.questions[id] || props.questions[props.index]
+  const question = props.questions[question_id] || props.questions[props.index]
   const user = props.users[question.author].name
   const avatar = props.users[question.author].avatarURL
   const optionOneText = question.optionOne.text
