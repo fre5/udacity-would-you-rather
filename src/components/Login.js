@@ -15,6 +15,8 @@ const Login = (props) => {
     inputValue.value = ''
     if (location.pathname === '/login') {
       navigate('/')
+    } else if (location.pathname.slice(0, 10) === '/questions') {
+      navigate('*')
     }
     navigate(1)
   }
@@ -22,7 +24,7 @@ const Login = (props) => {
   return (
     <Card className="login-card">
       <Card.Header>
-        <img src="wyr-logo.jpeg" alt="logo" style={{ width: '100%', margin: '10px 0px' }} />
+        <img src="/wyr-logo.jpeg" alt="logo" style={{ width: '100%', margin: '10px 0px' }} />
       </Card.Header>
       <Card.Body>
         <Card.Text style={{ textAlign: 'center' }}>Please sign in to continue</Card.Text>

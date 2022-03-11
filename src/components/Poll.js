@@ -3,8 +3,10 @@ import { Card, Button } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleSaveQuestionAnswer } from '../actions/shared'
+import Login from './Login'
 
 const Poll = (props) => {
+
   const [selection, setSelection] = useState('')
   const { question_id } = useParams()
   const navigate = useNavigate()
@@ -16,6 +18,11 @@ const Poll = (props) => {
   }
 
   const question = props.questions[question_id]
+
+  if (!question) {
+    return <Login />
+  }
+
   const user = props.users[question.author].name
   const avatar = props.users[question.author].avatarURL
   const optionOneText = question.optionOne.text

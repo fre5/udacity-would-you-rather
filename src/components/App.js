@@ -26,12 +26,12 @@ class App extends Component {
         <Header />
         <Routes>
           <Route path='*' element={ <NotFound /> } />
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={ <Home />} />
           <Route path='/login' element={ <Login />} />
           <Route path='/results/:id' element={ <Results /> }  />
           <Route path='/add' element={ this.props.authedUser ? <NewQuestion /> : <Login />}  />
           <Route path='/leaderboard' element={ this.props.authedUser ? <LeaderBoard /> : <Login />}  />
-          <Route path='/questions/:question_id' exact element={ <Poll /> } />
+          <Route path='/questions/:question_id' element={ <Poll /> } />
         </Routes>
       </div>   
     )
